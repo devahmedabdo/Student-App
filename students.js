@@ -1,24 +1,22 @@
 const fs = require("fs");
 
-const addStudent = (id, name,degrees ,comment) => {
+const addStudent = (id, name, degrees, comment) => {
   const students = loadStudentDetails();
   const existStudent = students.find((ele) => {
     return ele.id === id;
   });
   if (!existStudent) {
-    let studentDegrees = degrees.split(',')
-    let total = 0 
-    for(let degree of studentDegrees){
-      total += +degree
-    } 
+    let total = 0;
+    for (let degree of degrees) {
+      total += +degree;
+    }
     students.push({
       id,
       name,
       total,
       degrees,
 
-      comment
-
+      comment,
     });
 
     saveData(students);
@@ -61,7 +59,9 @@ const readStudent = (id) => {
     return ele.id === id;
   });
   if (studentWanted) {
-    console.log(`The Student Name Is => ${studentWanted.name} And his total degrees is => ${studentWanted.total}`);
+    console.log(
+      `The Student Name Is => ${studentWanted.name} And his total degrees is => ${studentWanted.total}`
+    );
   } else {
     console.log(`this id is not linked to any student`);
   }
@@ -69,12 +69,11 @@ const readStudent = (id) => {
 // list
 const listStudents = (title) => {
   let data = loadStudentDetails();
-  let num = 1
+  let num = 1;
   data.forEach((ele) => {
-    
-    if (data!==0) {
+    if (data !== 0) {
       console.log(`Student number ${num} is ${ele.name}`);
-      num++
+      num++;
     } else {
       console.log("no student added yet!");
     }
